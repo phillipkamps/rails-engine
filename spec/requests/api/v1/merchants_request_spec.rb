@@ -28,9 +28,9 @@ RSpec.describe "Merchants API" do
 
     get "/api/v1/merchants/#{merchant_list.first.id}"
     parsed = JSON.parse(response.body, symbolize_names: true)
-    merchants = parsed[:data]
+    merchant = parsed[:data]
 
     expect(response).to be_successful
-    expect(merchants.count).to eq(3)
+    expect(merchant[:id]).to eq(merchant_list.first.id.to_s)
   end
 end
