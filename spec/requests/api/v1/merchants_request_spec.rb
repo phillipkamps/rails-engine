@@ -33,4 +33,14 @@ RSpec.describe "Merchants API" do
     expect(response).to be_successful
     expect(merchant[:id]).to eq(merchant_list.first.id.to_s)
   end
+
+  it "gets all items for a merchant id" do
+    merchant_list = create_list(:merchant, 3)
+
+    get "/api/v1/merchants/#{merchant_list.first.id}/items"
+    parsed = JSON.parse(response.body, symbolize_names: true)
+    items = parsed[:data]
+
+    expect(response).to be_successful
+  end
 end
