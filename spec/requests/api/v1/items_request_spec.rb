@@ -1,10 +1,14 @@
 require "rails_helper"
 
 RSpec.describe "Items API" do
-  it "gets all items" do
-    merchants = create_list(:merchant, 3)
-    merchants.each { |merchant| 5.times { create :item, {merchant_id: merchant.id} } }
+  let!(:merchant_list) { create_list(:merchant, 3) }
+  let!(:item_list) {
+    merchant_list.each do |merchant|
+      5.times { create :item, {merchant_id: merchant.id} }
+    end
+  }
 
+  it "gets all items" do
     get "/api/v1/items"
     parsed = JSON.parse(response.body, symbolize_names: true)
     items = parsed[:data]
@@ -22,5 +26,15 @@ RSpec.describe "Items API" do
       expect(item[:attributes]).to have_key(:name)
       expect(item[:attributes][:name]).to be_a(String)
     end
+  end
+
+  it "gets one item" do
+    get "/api/v1/items/#{item_list.first.id}"
+    parsed = JSON.parse(response.body, symbolize_names: true)
+    item = parsed[:data]
+
+    expect(response).to be_successful
+    expect(item[:id]).to eq(item_list.first.id.to_s)
+    expect(item[:id]).to_not eq(item_list.last.id.to_s)
   end
 end
