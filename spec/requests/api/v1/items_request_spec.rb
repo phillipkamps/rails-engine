@@ -12,15 +12,15 @@ RSpec.describe "Items API" do
     expect(response).to be_successful
     expect(items.count).to eq(15)
 
-    # items.each do |item|
-    #   expect(item).to have_key(:id)
-    #   expect(item[:id]).to be_a(String)
-    #
-    #   expect(item).to have_key(:type)
-    #   expect(item[:type]).to eq("item")
-    #
-    #   expect(item[:attributes]).to have_key(:name)
-    #   expect(item[:attributes][:name]).to be_a(String)
-    # end
+    items.each do |item|
+      expect(item).to have_key(:id)
+      expect(item[:id]).to be_a(String)
+
+      expect(item).to have_key(:type)
+      expect(item[:type]).to eq("item")
+
+      expect(item[:attributes]).to have_key(:name)
+      expect(item[:attributes][:name]).to be_a(String)
+    end
   end
 end
