@@ -3,9 +3,9 @@ require "rails_helper"
 RSpec.describe "Items API" do
   let!(:merchant_list) { create_list(:merchant, 3) }
   let!(:item_list) {
-    merchant_list.each do |merchant|
-      5.times { create :item, {merchant_id: merchant.id} }
-    end
+    merchant_list.map do |merchant|
+      create_list :item, 5, {merchant_id: merchant.id}
+    end.flatten
   }
 
   it "gets all items" do
@@ -32,7 +32,6 @@ RSpec.describe "Items API" do
     get "/api/v1/items/#{item_list.first.id}"
     parsed = JSON.parse(response.body, symbolize_names: true)
     item = parsed[:data]
-
     expect(response).to be_successful
     expect(item[:id]).to eq(item_list.first.id.to_s)
     expect(item[:id]).to_not eq(item_list.last.id.to_s)
