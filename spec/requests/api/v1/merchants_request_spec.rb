@@ -32,15 +32,32 @@ RSpec.describe "Merchants API" do
 
     expect(response).to be_successful
     expect(merchant[:id]).to eq(merchant_list.first.id.to_s)
+    expect(merchant[:id]).to_not eq(merchant_list.last.id.to_s)
   end
 
   it "gets all items for a merchant id" do
-    merchant_list = create_list(:merchant, 3)
-
-    get "/api/v1/merchants/#{merchant_list.first.id}/items"
+    merchant = create(:merchant)
+    3.times { create :item, {merchant_id: merchant.id} }
+    get "/api/v1/merchants/#{merchant.id}/items"
     parsed = JSON.parse(response.body, symbolize_names: true)
     items = parsed[:data]
-
     expect(response).to be_successful
+
+    items.each do |item|
+      expect(item).to have_key(:id)
+      expect(item[:id]).to be_a(String)
+
+      expect(item).to have_key(:type)
+      expect(item[:type]).to eq("item")
+
+      expect(item[:attributes]).to have_key(:name)
+      expect(item[:attributes][:name]).to be_a(String)
+
+      expect(item[:attributes]).to have_key(:description)
+      expect(item[:attributes][:description]).to be_a(String)
+
+      expect(item[:attributes]).to have_key(:unit_price)
+      expect(item[:attributes][:unit_price]).to be_a(Float)
+    end
   end
 end
