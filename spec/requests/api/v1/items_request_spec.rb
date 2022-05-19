@@ -36,4 +36,46 @@ RSpec.describe "Items API" do
     expect(item[:id]).to eq(item_list.first.id.to_s)
     expect(item[:id]).to_not eq(item_list.last.id.to_s)
   end
+
+  it "can create a new item" do
+    item_params = {
+      name: "Ergonomic Wool Hat",
+      description: "Fixie cold-pressed iphone pickled.",
+      unit_price: 37.55,
+      merchant_id: merchant_list[2].id
+    }
+    headers = {"CONTENT_TYPE" => "application/json"}
+
+    post "/api/v1/items", headers: headers, params: JSON.generate(item: item_params)
+    created_item = Item.last
+
+    expect(response).to be_successful
+    expect(created_item.name).to eq(item_params[:name])
+    expect(created_item.description).to eq(item_params[:description])
+    expect(created_item.unit_price).to eq(item_params[:unit_price])
+    expect(created_item.merchant_id).to eq(item_params[:merchant_id])
+  end
+  #
+  # it "can update an existing book" do
+  #   id = create(:book).id
+  #   previous_name = Book.last.title
+  #   book_params = {title: "Charlotte's Web"}
+  #   headers = {"CONTENT_TYPE" => "application/json"}
+  #
+  #   patch "/api/v1/books/#{id}", headers: headers, params: JSON.generate({book: book_params})
+  #   book = Book.find_by(id: id)
+  #
+  #   expect(response).to be_successful
+  #   expect(book.title).to_not eq(previous_name)
+  #   expect(book.title).to eq("Charlotte's Web")
+  # end
+  #
+  # it "can destroy a book" do
+  #   book = create(:book)
+  #
+  #   expect { delete "/api/v1/books/#{book.id}" }.to change(Book, :count).by(-1)
+  #
+  #   expect(response).to be_successful
+  #   expect { Book.find(book.id) }.to raise_error(ActiveRecord::RecordNotFound)
+  # end
 end
