@@ -67,18 +67,17 @@ RSpec.describe "Items API" do
     expect { Item.find(item.id) }.to raise_error(ActiveRecord::RecordNotFound)
   end
 
-  # it "can update an existing book" do
-  #   id = create(:book).id
-  #   previous_name = Book.last.title
-  #   book_params = {title: "Charlotte's Web"}
-  #   headers = {"CONTENT_TYPE" => "application/json"}
-  #
-  #   patch "/api/v1/books/#{id}", headers: headers, params: JSON.generate({book: book_params})
-  #   book = Book.find_by(id: id)
-  #
-  #   expect(response).to be_successful
-  #   expect(book.title).to_not eq(previous_name)
-  #   expect(book.title).to eq("Charlotte's Web")
-  # end
-  #
+  it "can update an item" do
+    id = create(:item, {merchant_id: merchant_list[2].id}).id
+    previous_name = Item.last.name
+    item_params = {name: "Small Wool Table"}
+    headers = {"CONTENT_TYPE" => "application/json"}
+
+    patch "/api/v1/items/#{id}", headers: headers, params: JSON.generate({item: item_params})
+    item = Item.find_by(id: id)
+
+    expect(response).to be_successful
+    expect(book.title).to_not eq(previous_name)
+    expect(book.title).to eq("Small Wool Table")
+  end
 end
