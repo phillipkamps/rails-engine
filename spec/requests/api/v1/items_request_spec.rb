@@ -55,7 +55,18 @@ RSpec.describe "Items API" do
     expect(created_item.unit_price).to eq(item_params[:unit_price])
     expect(created_item.merchant_id).to eq(item_params[:merchant_id])
   end
-  #
+
+  it "can destroy an item" do
+    item = create(:item, {merchant_id: merchant_list[2].id})
+    expect(Item.count).to eq(16)
+
+    delete "/api/v1/items/#{item.id}"
+
+    expect(response).to be_successful
+    expect(Item.count).to eq(15)
+    expect { Item.find(item.id) }.to raise_error(ActiveRecord::RecordNotFound)
+  end
+
   # it "can update an existing book" do
   #   id = create(:book).id
   #   previous_name = Book.last.title
@@ -70,12 +81,4 @@ RSpec.describe "Items API" do
   #   expect(book.title).to eq("Charlotte's Web")
   # end
   #
-  # it "can destroy a book" do
-  #   book = create(:book)
-  #
-  #   expect { delete "/api/v1/books/#{book.id}" }.to change(Book, :count).by(-1)
-  #
-  #   expect(response).to be_successful
-  #   expect { Book.find(book.id) }.to raise_error(ActiveRecord::RecordNotFound)
-  # end
 end
