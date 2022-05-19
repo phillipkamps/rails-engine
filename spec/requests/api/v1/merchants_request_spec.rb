@@ -36,14 +36,17 @@ RSpec.describe "Merchants API" do
   end
 
   it "gets all items for a merchant id" do
-    merchant = create(:merchant)
-    3.times { create :item, {merchant_id: merchant.id} }
-    get "/api/v1/merchants/#{merchant.id}/items"
+    merchants = create_list(:merchant, 3)
+    3.times { create :item, {merchant_id: merchants[0].id} }
+    get "/api/v1/merchants/#{merchants[0].id}/items"
     parsed = JSON.parse(response.body, symbolize_names: true)
     items = parsed[:data]
     expect(response).to be_successful
 
     items.each do |item|
+      expect(item[:attributes][:merchant_id]).to eq(merchants[0].id)
+      expect(item[:attributes][:merchant_id]).to_not eq(merchants[1].id)
+
       expect(item).to have_key(:id)
       expect(item[:id]).to be_a(String)
 
