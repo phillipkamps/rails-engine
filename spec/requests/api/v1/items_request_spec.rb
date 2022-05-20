@@ -77,7 +77,7 @@ RSpec.describe "Items API" do
     item = Item.find_by(id: id)
 
     expect(response).to be_successful
-    expect(book.title).to_not eq(previous_name)
-    expect(book.title).to eq("Small Wool Table")
+    expect(item.name).to_not eq(previous_name)
+    expect(item.name).to eq("Small Wool Table")
   end
 end
