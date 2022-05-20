@@ -80,4 +80,15 @@ RSpec.describe "Items API" do
     expect(item.name).to_not eq(previous_name)
     expect(item.name).to eq("Small Wool Table")
   end
+
+  it "gets an item's merchant" do
+    get "/api/v1/items/#{item_list[0].id}/merchants"
+    parsed = JSON.parse(response.body, symbolize_names: true)
+    merchant = parsed[:data]
+    expect(response).to be_successful
+    expect(merchant[:id]).to eq(merchant_list[0].id.to_s)
+    expect(merchant[:id]).to_not eq(merchant_list[1].id.to_s)
+
+    expect(merchant[:attributes][:name]).to eq(merchant_list[0].name)
+  end
 end
