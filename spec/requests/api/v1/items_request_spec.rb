@@ -82,7 +82,7 @@ RSpec.describe "Items API" do
   end
 
   it "gets an item's merchant" do
-    get "/api/v1/items/#{item_list[0].id}/merchants"
+    get "/api/v1/items/#{item_list[0].id}/merchant"
     parsed = JSON.parse(response.body, symbolize_names: true)
     merchant = parsed[:data]
     expect(response).to be_successful

@@ -204,6 +204,26 @@
           null
         ]
       },
+      "/Users/phillipkamps/turing/3module/rails-engine/spec/factories/items.rb": {
+        "lines": [
+          1,
+          1,
+          96,
+          96,
+          96,
+          null,
+          null
+        ]
+      },
+      "/Users/phillipkamps/turing/3module/rails-engine/spec/factories/merchants.rb": {
+        "lines": [
+          1,
+          1,
+          28,
+          null,
+          null
+        ]
+      },
       "/Users/phillipkamps/turing/3module/rails-engine/config/routes.rb": {
         "lines": [
           1,
@@ -211,17 +231,143 @@
           1,
           1,
           1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
           null,
           null,
           null
         ]
       },
-      "/Users/phillipkamps/turing/3module/rails-engine/app/controllers/api/v1/merchants_controller.rb": {
+      "/Users/phillipkamps/turing/3module/rails-engine/spec/requests/api/v1/merchants_request_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          3,
+          3,
+          null,
+          3,
+          3,
+          null,
+          3,
+          3,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          4,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          3,
+          3,
+          null,
+          3,
+          3,
+          null,
+          3,
+          3,
+          null,
+          3,
+          3,
+          null,
+          3,
+          3,
+          null,
+          3,
+          3,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/phillipkamps/turing/3module/rails-engine/app/models/merchant.rb": {
         "lines": [
           1,
           1,
+          1,
+          null
+        ]
+      },
+      "/Users/phillipkamps/turing/3module/rails-engine/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/phillipkamps/turing/3module/rails-engine/app/models/item.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/phillipkamps/turing/3module/rails-engine/app/controllers/api/v1/items_controller.rb": {
+        "lines": [
+          1,
+          1,
+          1,
           null,
           null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          0,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          2,
           null,
           null
         ]
@@ -231,8 +377,65 @@
           1,
           null
         ]
+      },
+      "/Users/phillipkamps/turing/3module/rails-engine/app/serializers/item_serializer.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/phillipkamps/turing/3module/rails-engine/app/controllers/api/v1/item_merchants_controller.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          0,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/phillipkamps/turing/3module/rails-engine/app/serializers/merchant_serializer.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/phillipkamps/turing/3module/rails-engine/app/controllers/api/v1/merchants_controller.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/phillipkamps/turing/3module/rails-engine/app/controllers/api/v1/merchant_items_controller.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          0,
+          null,
+          null,
+          null
+        ]
       }
     },
-    "timestamp": 1652830943
+    "timestamp": 1653013428
   }
 }
