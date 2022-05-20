@@ -5,8 +5,9 @@ Rails.application.routes.draw do
       resources :merchants, only: [:index, :show] do
         resources :items, only: [:index], controller: :merchant_items
       end
+
       resources :items do
-        resources :merchants, only: [:index], controller: :item_merchants
+        resources :merchant, only: [:index], controller: :item_merchants
       end
     end
   end
